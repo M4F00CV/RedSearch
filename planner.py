@@ -25,19 +25,17 @@ def clean_noise():
             p.unlink()
 
 def run_sub_goal(goal: str, max_iter: int = 3, timeout: int = 300, allow_network: bool = False) -> str:
-    """Ejecuta agent_tools.py con un sub-objetivo y devuelve su salida."""
+    """Execute agent_tools.py with a single sub-goal and return its stdout."""
     cmd = [sys.executable, "agent_tools.py", goal, "--max-iter", str(max_iter)]
     if allow_network:
         cmd.append("--allow-network")
-    result = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
+
     print(f"\n{'#'*60}")
     print(f"# SUB-OBJETIVO: {goal}")
     print(f"{'#'*60}")
+
     try:
-        result = subprocess.run(
-            [sys.executable, "agent_tools.py", goal, "--max-iter", str(max_iter)],
-            capture_output=True, text=True, timeout=timeout,
-        )
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
         print(result.stdout)
         if result.returncode != 0:
             print(f"[ERROR sub-objetivo] {result.stderr[:500]}", file=sys.stderr)
