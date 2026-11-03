@@ -1,45 +1,41 @@
 # Conventional Commits Guide
 
-Reference for this project. All commits in English, imperative mood.
+All commits in English, imperative mood, present tense.
 
 ## Format
 
-<type>(<scope>): <description>
+`<type>(<scope>): <description>`
 
-[optional body]
-
-[optional footer]
-
+Optional body (blank line after description, wrapped at 72 chars).
+Optional footer for `BREAKING CHANGE:`, `Closes #N`, `Refs #N`.
 
 ## Types
 
-| Type | When to use |
-|---|---|
-| `feat` | New feature or functionality |
-| `fix` | Bug fix or error correction |
-| `docs` | Documentation changes only |
-| `style` | Code formatting (no logic changes) |
-| `refactor` | Code restructuring (no functionality change) |
-| `test` | Adding or modifying tests |
-| `chore` | Maintenance, config, dependencies |
+- `feat` — new feature or functionality
+- `fix` — bug fix or error correction
+- `docs` — documentation only
+- `style` — formatting, no logic change
+- `refactor` — restructuring, no behavior change
+- `test` — add or modify tests
+- `chore` — maintenance, config, deps
 
-Choose the RIGHT type. If behavior changed, it's `feat` or `fix`, not `refactor`.
+If behavior changed, use `feat` or `fix`, not `refactor`.
 
 ## Rules
 
-- **Description**: ≤50 chars, imperative mood ("add" not "added"), lowercase, no period.
-- **Scope**: lowercase, specific but not too granular (`auth`, not `auth/login/validation`).
-- **Body**: only when the "why" isn't obvious. Wrap at 72 chars. Bullet points for multiple items.
-- **Footer**: use for `BREAKING CHANGE:`, `Closes #N`, `Refs #N`.
-- **Atomic**: one logical change per commit. If unrelated, split.
+- Description: <=50 chars, imperative ("add" not "added"), lowercase, no period
+- Scope: lowercase, specific but not too granular
+- Body: only when "why" is not obvious. Wrap at 72 chars. Bullets for multiple items
+- Footer: `BREAKING CHANGE:` prefix for breaking changes
+- Atomic: one logical change per commit
 
 ## Scopes for this project
 
-- `core` — `agent_tools.py`, `planner.py`, `orchestrator.py`
-- `tools` — specific tool implementations (semgrep, gitleaks, dirsearch)
-- `rag` — `build_index.py`, `corpus.json`, embeddings
-- `agent` — ReAct loop, prompt, fallback logic
-- `orchestrator` — pipeline determinista
+- `core` — agent_tools.py, planner.py, orchestrator.py
+- `tools` — individual tool implementations
+- `rag` — build_index.py, corpus.json
+- `agent` — ReAct loop, prompt
+- `orchestrator` — deterministic pipeline
 - `planner` — external planner
 - `docs` — README, DEUDA, structure, commits
 - `deps` — venv, requirements
@@ -47,58 +43,40 @@ Choose the RIGHT type. If behavior changed, it's `feat` or `fix`, not `refactor`
 
 ## Examples
 
-### Simple
+Simple: `fix(tools): handle gitleaks 8.16 without dir subcommand`
+Simple: `docs(readme): add venv setup instructions`
+Simple: `chore(deps): pin dirsearch to 0.5.0`
 
-fix(tools): handle gitleaks 8.16 without 'dir' subcommand
-docs(readme): add venv setup instructions
-chore(deps): pin dirsearch to 0.5.0
+Medium (with body):
 
-### Medium (with body)
+    feat(tools): add dirsearch integration for web path discovery
 
-feat(tools): add dirsearch integration for web path discovery
+    Implement dirsearch_tool using the Python API (FuzzerConfig +
+    DirsearchFuzzer). Returns metadata only (status, path, length,
+    redirect) to avoid prompt injection from HTTP response bodies.
 
-Implement dirsearch_tool using the Python API (FuzzerConfig +
-DirsearchFuzzer) instead of CLI wrapper. Returns metadata only
-(status, path, length, redirect) — not body — to avoid prompt
-injection from HTTP responses.
+    Requires --allow-network flag.
 
-Requires --allow-network flag to be enabled.
+Complex (with footer):
 
-### Complex (with footer)
+    refactor(core)!: split agent_tools.py into src/ modules
 
-efactor(core)!: split agent_tools.py into src/ modules
+    Break 500-line monolith into:
+    - src/core/ (llm, react_loop, utils)
+    - src/tools/ (one file per tool, registry)
+    - src/rag/
+    - src/agent/
+    - src/orchestrator/
+    - src/planner/
 
-Break 500-line monolith into:
+    BREAKING CHANGE: import paths change. scripts/ wrappers
+    preserve `python agent_tools.py ...` compatibility.
 
-src/core/ (llm, react_loop, utils)
-
-src/tools/ (one file per tool, registry)
-
-src/rag/ (index, retrieve)
-
-src/agent/ (run_agent + CLI)
-
-src/orchestrator/ (pipeline, verify, report_md)
-
-src/planner/
-
-BREAKING CHANGE: import paths change. scripts/ wrappers
-preserve python agent_tools.py ... compatibility.
-
-Refs #1
+    Refs #1
 
 ## Anti-patterns
 
-- `fix: bug fix` — too vague
-- `feat: add login and fix dashboard` — mixed concerns, split it
-- `feat(auth): added login` — wrong tense, use "add"
+- `fix: bug fix` — vague
+- `feat: add login and fix dashboard` — mixed concerns, split
+- `feat(auth): added login` — wrong tense
 - `docs(readme): update README.md file with new info` — redundant
-
-## Checklist
-
-- [ ] Type accurately reflects the change
-- [ ] Scope is specific and lowercase
-- [ ] Description is imperative, specific, ≤50 chars
-- [ ] Body explains WHY (if not obvious)
-- [ ] Breaking changes marked with `!` and `BREAKING CHANGE:`
-- [ ] One logical change per commit

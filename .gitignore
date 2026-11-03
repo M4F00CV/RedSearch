@@ -5,11 +5,11 @@ __pycache__/
 venv/
 *.egg-info/
 
-# Generated RAG artifacts (regenerable with build_index.py)
+# Generated RAG artifacts (regenerable via build_index.py)
 data/embeddings.npy
 data/index.db
 
-# Ephemeral reports (keep only documented examples)
+# Ephemeral reports (keep sample .md only)
 reports/*.json
 reports/*.txt
 reports/agent_vuln_test.md
@@ -18,7 +18,7 @@ reports/gitleaks_*.json
 reports/baseline_*.json
 reports/semgrep_*.json
 
-# External target clones (large, reproducible via git clone)
+# External target clones (reproducible via git clone)
 targets/NodeGoat/
 
 # OS
