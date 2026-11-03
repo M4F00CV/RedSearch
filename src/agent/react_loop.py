@@ -36,6 +36,23 @@ SYSTEM_PROMPT = (
     "- Si no puedes cumplir una parte del objetivo, dilo explícitamente."
 )
 
+def _looks_like_summary(content: str) -> bool:
+    """Heuristic: detect if content is a final summary vs a plan/thought.
+
+    Requires at least 2 concrete-result indicators (check_ids, line
+    numbers, severities, CWE IDs, "found N", paths). Short or generic
+    intermediate thoughts ("Now I'll search...", "I need to...") fail
+    the check and trigger a RETRY instead.
+    """
+    if not content or len(content) < 80:
+        return False
+    low = content.lower()
+    signals = [
+        "encontr", "hallazg", "severidad", "cwe-", "check_id", "check id",
+        "fix recomendado", "línea ", "line ", "status code",
+        "código de estado", "rutas en", "vulnerabilidad", "vulnerable",
+    ]
+    return sum(1 for s in signals if s in low) >= 2
 
 def run_agent(goal: str, max_iter: int = 6) -> None:
     """Execute the ReAct loop against a goal.
@@ -101,18 +118,28 @@ def run_agent(goal: str, max_iter: int = 6) -> None:
             else:
                 consecutive_no_action += 1
 
+                # 1) Claimed file exists → objective complete
                 claimed_files = re.findall(r"reports/[\w\-\.]+\.md", content)
                 missing = [f for f in claimed_files if not Path(f).exists()]
-
                 if claimed_files and not missing:
                     print("\n[FINAL] Objetivo completado (archivos verificados).")
                     print(content)
                     return
 
+                # 2) Tools executed + content looks like summary → FINAL
+                #    Catches the case where the LLM summarizes results
+                #    on the first no-action turn (e.g. after search_corpus).
+                if seen_calls and _looks_like_summary(content):
+                    print(f"\n[FINAL] Objetivo completado (resumen tras {len(seen_calls)} herramienta(s)).")
+                    print(content)
+                    return
+
+                # Warn on hallucinated files
                 if missing:
                     print(f"\n[ALERTA] El modelo afirma haber generado {missing}, pero no existen.")
                     print("         (posible alucinación de acción)")
 
+                # 3) Fallback: 2 turns without action → resolve
                 if consecutive_no_action >= 2 and seen_calls:
                     print(f"\n[FINAL] Resumen tras {len(seen_calls)} herramienta(s) ejecutada(s).")
                     print(content or "(respuesta vacía)")
