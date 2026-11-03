@@ -17,9 +17,12 @@ reports/agent_vuln_test_*.md
 reports/gitleaks_*.json
 reports/baseline_*.json
 reports/semgrep_*.json
+reports/report_*.md
 
 # External target clones (reproducible via git clone)
 targets/NodeGoat/
 
 # OS
 .DS_Store
+
+reports/report_*.md

@@ -1,54 +1,43 @@
 #!/usr/bin/env python3
-"""test_retrieval.py — Prueba el retrieval del índice RAG."""
-import json, sqlite3, urllib.request
-from pathlib import Path
-import numpy as np
+"""Retrieval quality test against the RAG corpus.
 
-def embed(text):
-    payload = {"model": "nomic-embed-text", "prompt": text}
-    req = urllib.request.Request(
-        "http://localhost:11434/api/embeddings",
-        data=json.dumps(payload).encode(),
-        headers={"Content-Type": "application/json"},
-    )
-    with urllib.request.urlopen(req, timeout=60) as r:
-        return np.array(json.loads(r.read())["embedding"], dtype=np.float32)
+Moved here in the same shape as before, but consuming src.rag.retrieve
+instead of duplicating the embedding logic.
 
-def retrieve(query, k=2):
-    q = embed(query)
-    q /= np.linalg.norm(q)
-    vecs = np.load("data/embeddings.npy")
-    vecs /= np.linalg.norm(vecs, axis=1, keepdims=True)
-    scores = vecs @ q
-    top = np.argsort(-scores)[:k]
-    conn = sqlite3.connect("data/index.db")
-    out = []
-    for i in top:
-        row = conn.execute("SELECT cwe, name, fix FROM docs WHERE id=?", (int(i),)).fetchone()
-        out.append((float(scores[i]), row))
-    conn.close()
-    return out
+TODO: move to tests/ with pytest in a future commit.
+"""
 
-queries = [
-    "eval() on req.body in Node.js",
-    "SQL string formatting with user input",
-    "redirect to req.query.url",
-    "user-controlled URL fetched by server",
-]
-for q in queries:
-    print(f"\nQuery: {q}")
-    for score, row in retrieve(q):
-        print(f"  [{score:.3f}] {row[0]} {row[1]}")
+from src.rag.retrieve import retrieve
 
-extra_queries = [
-    "CWE-798 python hardcoded AWS key",
-    "CWE-732 docker no-new-privileges",
-    "CWE-522 session cookie httponly secure",
-    "CWE-1357 github actions mutable tag",
-    "CWE-319 node http.createServer",
+
+QUERIES = [
+    ("eval() on req.body in Node.js", "CWE-95"),
+    ("SQL string formatting with user input", "CWE-89"),
+    ("redirect to req.query.url", "CWE-601"),
+    ("user-controlled URL fetched by server", "CWE-918"),
+    ("CWE-798 python hardcoded AWS key", "CWE-798"),
+    ("CWE-732 docker no-new-privileges", "CWE-732"),
+    ("CWE-522 session cookie httponly secure", "CWE-522"),
+    ("CWE-1357 github actions mutable tag", "CWE-1357"),
+    ("CWE-319 node http.createServer", "CWE-319"),
 ]
 
-for q in extra_queries:
-    print(f"\nQuery: {q}")
-    for score, row in retrieve(q):
-        print(f"  [{score:.3f}] {row[0]} {row[1]}")
+
+def main():
+    passed = 0
+    for query, expected_cwe in QUERIES:
+        results = retrieve(query, k=2, min_score=0.0)
+        if not results:
+            print(f"[FAIL] {query!r}: no results")
+            continue
+        top_cwe = results[0][1]["cwe"]
+        score = results[0][0]
+        status = "[ OK ]" if top_cwe == expected_cwe else "[FAIL]"
+        print(f"{status} {query!r} → {top_cwe} (score {score:.3f})")
+        if top_cwe == expected_cwe:
+            passed += 1
+    print(f"\n{passed}/{len(QUERIES)} passed")
+
+
+if __name__ == "__main__":
+    main()
