@@ -664,7 +664,8 @@ def run_agent(goal, max_iter=MAX_ITERATIONS):
 
 
 
-if __name__ == "__main__":
+def main_cli():
+    """CLI entry point."""
     import argparse
 
     parser = argparse.ArgumentParser()
@@ -677,5 +678,12 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
 
+    # Globals are ugly but pragmatic for a script-based CLI.
+    # Future refactor to src/ will turn this into a Config object.
+    global ALLOW_NETWORK
     ALLOW_NETWORK = args.allow_network
     run_agent(args.goal, max_iter=args.max_iter)
+
+
+if __name__ == "__main__":
+    main_cli()
