@@ -258,6 +258,21 @@ def write_report_tool(content: str, filename: str = "agent_report.md") -> str:
 class ScanTimeout(Exception):
     pass
 
+# Compact fallback list for when the builtin preset exceeds max_entries.
+# Curated from common directory-bruteforce wordlists (admin, api, backups, etc.)
+COMMON_PATHS = [
+    "admin", "admin/", "administrator", "login", "logout", "signin", "signup",
+    "register", "api", "api/v1", "api/v2", "api/health", "api/status",
+    "robots.txt", "sitemap.xml", "security.txt", ".well-known/security.txt",
+    ".git/config", ".git/HEAD", ".env", ".env.example", ".htaccess",
+    "config", "config.json", "config.php", "backup", "backups", "backup.zip",
+    "db", "database", "sql", "dump.sql", "test", "tests", "dev", "staging",
+    "dashboard", "panel", "cpanel", "wp-admin", "wp-login.php",
+    "uploads", "files", "static", "assets", "js", "css", "images",
+    "index.php", "phpinfo.php", "info.php", "server-status",
+    "README.md", "CHANGELOG.md", "LICENSE", "package.json",
+    "Dockerfile", "docker-compose.yml",
+]
 
 def _timeout_handler(signum, frame):
     raise ScanTimeout()
@@ -294,6 +309,7 @@ def dirsearch_tool(
     hard_timeout = 120  # segundos totales
 
     # Construir wordlist
+    # Build wordlist with fallback if builtin preset exceeds max_entries
     try:
         if Path(wordlist).exists():
             wl = Wordlist.from_file(wordlist)
@@ -301,20 +317,22 @@ def dirsearch_tool(
             wl = Wordlist([p.strip() for p in wordlist.split(",") if p.strip()])
         else:
             preset = (wordlist or "quick").lower()
-            if preset == "api":
-                tmpl = WordlistTemplate.from_builtin("api")
-            elif preset == "admin":
-                tmpl = WordlistTemplate.from_builtin("admin")
-            elif preset == "backups":
-                tmpl = WordlistTemplate([
-                    "%CATEGORY:backups%", "%CATEGORY:db%",
-                    "%CATEGORY:logs%", "%CATEGORY:keys%", "%CATEGORY:vcs%",
-                ])
-            else:  # quick
-                tmpl = WordlistTemplate(["%CATEGORY:common%", "%CATEGORY:web%"])
-            wl = Wordlist.from_template(tmpl, max_entries=max_entries)
-    except WordlistLimitError:
-        return f"Wordlist excedió max_entries={max_entries}. Reduce el preset o usa una lista explícita."
+            try:
+                if preset == "api":
+                    tmpl = WordlistTemplate.from_builtin("api")
+                elif preset == "admin":
+                    tmpl = WordlistTemplate.from_builtin("admin")
+                elif preset == "backups":
+                    tmpl = WordlistTemplate([
+                        "%CATEGORY:backups%", "%CATEGORY:db%",
+                        "%CATEGORY:logs%", "%CATEGORY:keys%", "%CATEGORY:vcs%",
+                    ])
+                else:  # quick
+                    tmpl = WordlistTemplate(["%CATEGORY:common%", "%CATEGORY:web%"])
+                wl = Wordlist.from_template(tmpl, max_entries=max_entries)
+            except WordlistLimitError:
+                # Builtin preset exceeded max_entries — use compact fallback
+                wl = Wordlist(COMMON_PATHS[:max_entries])
     except Exception as e:
         return f"Error construyendo wordlist: {e}"
 
