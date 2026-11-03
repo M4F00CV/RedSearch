@@ -26,3 +26,9 @@ targets/NodeGoat/
 .DS_Store
 
 reports/report_*.md
+
+# pytest
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
