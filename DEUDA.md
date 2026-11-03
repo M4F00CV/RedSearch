@@ -85,3 +85,10 @@ Solución: `planner.py` divide los objetivos complejos.
 - [x] Planner externo
 - [x] Limpieza de archivos de ruido
 - [x] Prompt sin contaminación cruzada (verificador vs agente)
+
+
+### `write_report_tool` default filename is agent_report.md
+- Impacto: bajo (gitignored, pero crea ruido local)
+- Fix: make filename required, remove default from schema
+- Esfuerzo: 5 min
+- Se hará en commit 10 post-refactor
