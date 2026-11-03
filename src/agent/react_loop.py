@@ -39,20 +39,47 @@ SYSTEM_PROMPT = (
 def _looks_like_summary(content: str) -> bool:
     """Heuristic: detect if content is a final summary vs a plan/thought.
 
-    Requires at least 2 concrete-result indicators (check_ids, line
-    numbers, severities, CWE IDs, "found N", paths). Short or generic
-    intermediate thoughts ("Now I'll search...", "I need to...") fail
-    the check and trigger a RETRY instead.
+    Layered approach:
+    - Strong signals (check_id, severity, CWE, "found N"): any one → summary.
+    - Weak signals (query, insecure, parameter, recommended): need 2+,
+      OR 1+ combined with a code block.
+    - Rejects explicit planning language when content is short.
     """
     if not content or len(content) < 80:
         return False
+
     low = content.lower()
-    signals = [
-        "encontr", "hallazg", "severidad", "cwe-", "check_id", "check id",
-        "fix recomendado", "línea ", "line ", "status code",
-        "código de estado", "rutas en", "vulnerabilidad", "vulnerable",
+
+    # Reject short planning messages ("I need to...", "Next I will...")
+    planning = [
+        "voy a ", "necesito ", "debo ", "ahora voy", "a continuación",
+        "primero ", "luego ", "siguiente paso", "voy a buscar",
+        "i need to", "i will ", "i should ", "next step",
     ]
-    return sum(1 for s in signals if s in low) >= 2
+    if len(content) < 200 and any(s in low for s in planning):
+        return False
+
+    # Strong signals — any one is enough
+    strong = [
+        "check_id", "check id", "severidad", "severity", "cwe-",
+        "hallazg", "encontr", "found ",
+        "fix recomendado", "recommended fix",
+        "status code", "código de estado", "rutas en", "paths found",
+    ]
+    if any(s in low for s in strong):
+        return True
+
+    # Weak signals — need 2+, or 1+ with a code block
+    weak = [
+        "insegur", "vulnerab", "parámetro", "parameter",
+        "consulta", "query", "recomiend", "recomend",
+        "evita", "segura ", "secure", "línea ", "line ",
+        "secreto", "secret", "sensible",
+    ]
+    weak_count = sum(1 for s in weak if s in low)
+    has_code_block = "```" in content
+
+    return weak_count >= 2 or (weak_count >= 1 and has_code_block)
 
 def run_agent(goal: str, max_iter: int = 6) -> None:
     """Execute the ReAct loop against a goal.
