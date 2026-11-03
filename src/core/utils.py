@@ -117,3 +117,28 @@ def is_stuck_within(content: str, min_repeats: int = 4, min_len: int = 20) -> bo
     counts = Counter(lines)
     _, count = counts.most_common(1)[0]
     return count >= min_repeats
+
+def read_fragment_optional(path: str, line: int, context: int = 3):
+    """Return a code fragment with >> marker on the target line.
+
+    Args:
+        path: File path.
+        line: 1-based line number to mark with >>.
+        context: Number of lines before and after to include.
+
+    Returns:
+        Formatted string with numbered lines, or None if file not found.
+    """
+    from pathlib import Path
+
+    p = Path(path)
+    if not p.exists():
+        return None
+    lines = p.read_text(encoding="utf-8", errors="replace").splitlines()
+    start = max(0, line - 1 - context)
+    end = min(len(lines), line + context)
+    out = []
+    for i in range(start, end):
+        marker = ">>" if (i + 1) == line else "  "
+        out.append(f"{marker} {i+1:4d} | {lines[i]}")
+    return "\n".join(out)
