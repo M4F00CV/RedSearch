@@ -1,0 +1,138 @@
+[
+  {
+    "cwe": "CWE-89",
+    "name": "SQL Injection",
+    "description": "Construcción de consultas SQL concatenando input del usuario sin parametrizar.",
+    "vulnerable": "cursor.execute(f\"SELECT * FROM users WHERE name = '{username}'\")",
+    "fix": "cursor.execute(\"SELECT * FROM users WHERE name = ?\", (username,))",
+    "owasp": "A03:2021"
+  },
+  {
+    "cwe": "CWE-95",
+    "name": "Eval Injection",
+    "description": "Uso de eval() sobre datos controlables por el usuario en JavaScript o Python.",
+    "vulnerable": "const val = eval(req.body.preTax);",
+    "fix": "const val = Number.parseFloat(req.body.preTax); if (Number.isNaN(val)) throw new Error('invalid preTax');",
+    "owasp": "A03:2021"
+  },
+  {
+    "cwe": "CWE-601",
+    "name": "Open Redirect",
+    "description": "Redirección a URL controlada por el usuario sin whitelist de destinos.",
+    "vulnerable": "res.redirect(req.query.url);",
+    "fix": "const allowed = ['/home','/login','/dashboard']; if (allowed.includes(req.query.url)) res.redirect(req.query.url); else res.redirect('/');",
+    "owasp": "A01:2021"
+  },
+  {
+    "cwe": "CWE-319",
+    "name": "Cleartext Transmission in HTML Links",
+    "description": "Enlaces HTML o peticiones cliente que usan HTTP plano en lugar de HTTPS para datos sensibles.",
+    "vulnerable": "<a href=\"http://example.com/login\">Login</a>",
+    "fix": "<a href=\"https://example.com/login\">Login</a>",
+    "owasp": "A02:2021"
+  },
+  {
+    "cwe": "CWE-319",
+    "name": "Cleartext Transmission in Server",
+    "description": "Servidor Node.js levantado con http.createServer() en producción sin TLS ni redirect a HTTPS.",
+    "vulnerable": "http.createServer(app).listen(port);",
+    "fix": "https.createServer({ key: fs.readFileSync('server.key'), cert: fs.readFileSync('server.crt') }, app).listen(443); // o forzar redirect a HTTPS con trust proxy",
+    "owasp": "A02:2021"
+  },
+  {
+    "cwe": "CWE-79",
+    "name": "Cross-site Scripting (XSS)",
+    "description": "Inyección de HTML/JS controlado por el usuario en el DOM sin sanitizar.",
+    "vulnerable": "element.innerHTML = req.query.name;",
+    "fix": "element.textContent = req.query.name; // o DOMPurify.sanitize(req.query.name) si se necesita HTML",
+    "owasp": "A03:2021"
+  },
+  {
+    "cwe": "CWE-78",
+    "name": "OS Command Injection",
+    "description": "Ejecución de comandos del sistema con input del usuario concatenado.",
+    "vulnerable": "child_process.exec('ls ' + req.query.dir);",
+    "fix": "child_process.execFile('ls', [req.query.dir]); // args como array, no concatenar",
+    "owasp": "A03:2021"
+  },
+  {
+    "cwe": "CWE-22",
+    "name": "Path Traversal",
+    "description": "Lectura o escritura de archivos usando rutas controladas por el usuario sin normalizar.",
+    "vulnerable": "fs.readFile(path.join(base, req.query.file));",
+    "fix": "const safe = path.basename(req.query.file); fs.readFile(path.join(base, safe));",
+    "owasp": "A01:2021"
+  },
+  {
+    "cwe": "CWE-352",
+    "name": "Cross-Site Request Forgery (CSRF)",
+    "description": "Endpoints mutantes (POST/PUT/DELETE) sin token anti-CSRF o sin SameSite=strict en la cookie de sesión.",
+    "vulnerable": "app.post('/transfer', (req, res) => { /* sin csrf */ });",
+    "fix": "app.use(csurf()); // en el form: <input type=\"hidden\" name=\"_csrf\" value=\"<%= csrfToken %>\">; en cookies: sameSite: 'strict'",
+    "owasp": "A01:2021"
+  },
+  {
+    "cwe": "CWE-502",
+    "name": "Deserialization of Untrusted Data",
+    "description": "Deserialización de datos del usuario con librerías que permiten ejecución de código.",
+    "vulnerable": "const obj = serialize.unserialize(req.body);",
+    "fix": "const obj = JSON.parse(req.body); // validar con zod/joi después",
+    "owasp": "A08:2021"
+  },
+  {
+    "cwe": "CWE-798",
+    "name": "Use of Hard-coded Credentials in JavaScript",
+    "description": "Credenciales, tokens o claves embebidos como const o let en código JavaScript/Node.js.",
+    "vulnerable": "const password = 'admin123';",
+    "fix": "const password = process.env.DB_PASSWORD; // desde .env no versionado o secret manager",
+    "owasp": "A07:2021"
+  },
+  {
+    "cwe": "CWE-798",
+    "name": "Use of Hard-coded Credentials in Python",
+    "description": "Credenciales, tokens o claves embebidos como variables module-level en código Python.",
+    "vulnerable": "AWS_ACCESS_KEY_ID = 'AKIAIOSFODNN7EXAMPLE'",
+    "fix": "import os\nAWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']  # desde .env no versionado o secret manager",
+    "owasp": "A07:2021"
+  },
+  {
+    "cwe": "CWE-611",
+    "name": "XML External Entity (XXE)",
+    "description": "Parsers XML que permiten DTDs y entidades externas.",
+    "vulnerable": "parser.parseString(req.body, { dtd: true });",
+    "fix": "parser.parseString(req.body, { dtd: false, externalEntities: false });",
+    "owasp": "A05:2021"
+  },
+  {
+    "cwe": "CWE-918",
+    "name": "Server-Side Request Forgery (SSRF)",
+    "description": "Peticiones HTTP del servidor a URLs controladas por el usuario.",
+    "vulnerable": "fetch(req.query.url);",
+    "fix": "const allowedHosts=['api.example.com']; const u=new URL(req.query.url); if(!allowedHosts.includes(u.hostname)) throw new Error('blocked');",
+    "owasp": "A10:2021"
+  },
+  {
+    "cwe": "CWE-1357",
+    "name": "Reliance on Insufficiently Trustworthy Component",
+    "description": "Uso de tags mutables (v1, v2, latest) en GitHub Actions en lugar de SHA fijo. Un atacante que comprometa el repo de la acción puede cambiar la referencia y ejecutar código arbitrario.",
+    "vulnerable": "uses: actions/checkout@v2",
+    "fix": "uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608  # SHA fijo del commit, no tag mutable",
+    "owasp": "A06:2021"
+  },
+  {
+    "cwe": "CWE-732",
+    "name": "Incorrect Permission Assignment for Critical Resource",
+    "description": "Contenedores Docker sin no-new-privileges o con filesystem escribible. Permite escalada de privilegios si el proceso es comprometido.",
+    "vulnerable": "services:\n  app:\n    image: node:18",
+    "fix": "services:\n  app:\n    image: node:18\n    security_opt:\n      - no-new-privileges:true\n    read_only: true\n    tmpfs:\n      - /tmp",
+    "owasp": "A05:2021"
+  },
+  {
+    "cwe": "CWE-522",
+    "name": "Insufficiently Protected Credentials",
+    "description": "Cookies de sesión sin flags de seguridad (Secure, HttpOnly, SameSite) o con nombre por defecto predecible. Semgrep agrupa aquí las reglas express-cookie-settings.",
+    "vulnerable": "app.use(session({ secret: 'keyboard cat' }));",
+    "fix": "app.use(session({ name: 'app-session', secret: process.env.SESSION_SECRET, cookie: { secure: true, httpOnly: true, sameSite: 'lax', maxAge: 3600000, path: '/' } }));",
+    "owasp": "A07:2021"
+  }
+]
