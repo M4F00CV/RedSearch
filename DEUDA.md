@@ -120,8 +120,8 @@ Solution: `planner.py` splits complex goals into sub-goals.
 - [x] Dirsearch integration as `src/tools/dirsearch.py` (Python API, metadata-only output)
 
 ### v0.4 — pytest suite
-- [x] 161 tests covering 11 of 17 source modules
-- [x] 72% overall coverage; 9 modules at 100%
+- [x] 161 tests covering 13 of 16 source modules
+- [x] 72% overall coverage; 8 modules at 100%
 - [x] Tests for `_looks_like_summary`, loop detection, tool fallback, dedup guard
 - [x] Tests for `verify()` with mocked LLM + RAG (100%)
 - [x] Tests for RAG retrieval with fixture corpus (100%)
