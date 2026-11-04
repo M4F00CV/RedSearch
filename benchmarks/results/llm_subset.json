@@ -1,13 +1,13 @@
 {
   "overall": {
     "tp": 18,
-    "fp": 16,
-    "tn": 26,
+    "fp": 9,
+    "tn": 33,
     "fn": 24,
     "tpr": 0.4286,
-    "fpr": 0.381,
-    "precision": 0.5294,
-    "score": 0.0476
+    "fpr": 0.2143,
+    "precision": 0.6667,
+    "score": 0.2143
   },
   "per_cwe": {
     "CWE-22": {
@@ -22,13 +22,13 @@
     },
     "CWE-328": {
       "tp": 1,
-      "fp": 1,
-      "tn": 2,
+      "fp": 0,
+      "tn": 3,
       "fn": 2,
       "tpr": 0.3333,
-      "fpr": 0.3333,
-      "precision": 0.5,
-      "score": 0.0
+      "fpr": 0.0,
+      "precision": 1.0,
+      "score": 0.3333
     },
     "CWE-330": {
       "tp": 0,
@@ -52,13 +52,13 @@
     },
     "CWE-502": {
       "tp": 3,
-      "fp": 1,
-      "tn": 2,
+      "fp": 0,
+      "tn": 3,
       "fn": 0,
       "tpr": 1.0,
-      "fpr": 0.3333,
-      "precision": 0.75,
-      "score": 0.6667
+      "fpr": 0.0,
+      "precision": 1.0,
+      "score": 1.0
     },
     "CWE-601": {
       "tp": 0,
@@ -82,21 +82,21 @@
     },
     "CWE-614": {
       "tp": 3,
-      "fp": 3,
-      "tn": 0,
+      "fp": 0,
+      "tn": 3,
       "fn": 0,
       "tpr": 1.0,
-      "fpr": 1.0,
-      "precision": 0.5,
-      "score": 0.0
+      "fpr": 0.0,
+      "precision": 1.0,
+      "score": 1.0
     },
     "CWE-643": {
-      "tp": 2,
-      "fp": 2,
-      "tn": 1,
-      "fn": 1,
-      "tpr": 0.6667,
-      "fpr": 0.6667,
+      "tp": 1,
+      "fp": 1,
+      "tn": 2,
+      "fn": 2,
+      "tpr": 0.3333,
+      "fpr": 0.3333,
       "precision": 0.5,
       "score": 0.0
     },
@@ -112,15 +112,25 @@
     },
     "CWE-79": {
       "tp": 0,
-      "fp": 2,
-      "tn": 1,
+      "fp": 0,
+      "tn": 3,
       "fn": 3,
       "tpr": 0.0,
-      "fpr": 0.6667,
+      "fpr": 0.0,
       "precision": 0.0,
-      "score": -0.6667
+      "score": 0.0
     },
     "CWE-89": {
+      "tp": 1,
+      "fp": 1,
+      "tn": 2,
+      "fn": 2,
+      "tpr": 0.3333,
+      "fpr": 0.3333,
+      "precision": 0.5,
+      "score": 0.0
+    },
+    "CWE-90": {
       "tp": 3,
       "fp": 1,
       "tn": 2,
@@ -129,16 +139,6 @@
       "fpr": 0.3333,
       "precision": 0.75,
       "score": 0.6667
-    },
-    "CWE-90": {
-      "tp": 0,
-      "fp": 0,
-      "tn": 3,
-      "fn": 3,
-      "tpr": 0.0,
-      "fpr": 0.0,
-      "precision": 0.0,
-      "score": 0.0
     },
     "CWE-94": {
       "tp": 3,
@@ -157,9 +157,12 @@
       "cwe": "CWE-22",
       "category": "pathtraver",
       "is_vuln_gt": true,
-      "n_findings": 0,
-      "verdicts": [],
-      "detected": false
+      "n_findings": 2,
+      "verdicts": [
+        "true_positive",
+        "false_positive"
+      ],
+      "detected": true
     },
     {
       "test_name": "BenchmarkTest00008",
@@ -168,9 +171,9 @@
       "is_vuln_gt": true,
       "n_findings": 1,
       "verdicts": [
-        "true_positive"
+        "false_positive"
       ],
-      "detected": true
+      "detected": false
     },
     {
       "test_name": "BenchmarkTest00618",
@@ -213,9 +216,11 @@
       "cwe": "CWE-89",
       "category": "sqli",
       "is_vuln_gt": false,
-      "n_findings": 1,
+      "n_findings": 3,
       "verdicts": [
-        "true_positive"
+        "false_positive",
+        "true_positive",
+        "false_positive"
       ],
       "detected": true
     },
@@ -264,17 +269,20 @@
       "is_vuln_gt": false,
       "n_findings": 1,
       "verdicts": [
-        "true_positive"
+        "false_positive"
       ],
-      "detected": true
+      "detected": false
     },
     {
       "test_name": "BenchmarkTest00206",
       "cwe": "CWE-611",
       "category": "xxe",
       "is_vuln_gt": false,
-      "n_findings": 0,
-      "verdicts": [],
+      "n_findings": 2,
+      "verdicts": [
+        "uncertain",
+        "uncertain"
+      ],
       "detected": false
     },
     {
@@ -282,8 +290,11 @@
       "cwe": "CWE-611",
       "category": "xxe",
       "is_vuln_gt": false,
-      "n_findings": 0,
-      "verdicts": [],
+      "n_findings": 2,
+      "verdicts": [
+        "uncertain",
+        "uncertain"
+      ],
       "detected": false
     },
     {
@@ -291,8 +302,11 @@
       "cwe": "CWE-611",
       "category": "xxe",
       "is_vuln_gt": false,
-      "n_findings": 0,
-      "verdicts": [],
+      "n_findings": 2,
+      "verdicts": [
+        "uncertain",
+        "uncertain"
+      ],
       "detected": false
     },
     {
@@ -300,8 +314,9 @@
       "cwe": "CWE-643",
       "category": "xpathi",
       "is_vuln_gt": true,
-      "n_findings": 1,
+      "n_findings": 2,
       "verdicts": [
+        "uncertain",
         "true_positive"
       ],
       "detected": true
@@ -322,9 +337,9 @@
       "is_vuln_gt": true,
       "n_findings": 1,
       "verdicts": [
-        "true_positive"
+        "false_positive"
       ],
-      "detected": true
+      "detected": false
     },
     {
       "test_name": "BenchmarkTest00945",
@@ -434,18 +449,17 @@
       "is_vuln_gt": false,
       "n_findings": 1,
       "verdicts": [
-        "true_positive"
+        "false_positive"
       ],
-      "detected": true
+      "detected": false
     },
     {
       "test_name": "BenchmarkTest00592",
       "cwe": "CWE-614",
       "category": "securecookie",
       "is_vuln_gt": true,
-      "n_findings": 2,
+      "n_findings": 1,
       "verdicts": [
-        "true_positive",
         "true_positive"
       ],
       "detected": true
@@ -455,10 +469,9 @@
       "cwe": "CWE-614",
       "category": "securecookie",
       "is_vuln_gt": true,
-      "n_findings": 3,
+      "n_findings": 2,
       "verdicts": [
-        "true_positive",
-        "true_positive",
+        "false_positive",
         "true_positive"
       ],
       "detected": true
@@ -468,9 +481,8 @@
       "cwe": "CWE-614",
       "category": "securecookie",
       "is_vuln_gt": true,
-      "n_findings": 2,
+      "n_findings": 1,
       "verdicts": [
-        "true_positive",
         "true_positive"
       ],
       "detected": true
@@ -621,8 +633,10 @@
       "cwe": "CWE-94",
       "category": "codeinj",
       "is_vuln_gt": true,
-      "n_findings": 1,
+      "n_findings": 3,
       "verdicts": [
+        "false_positive",
+        "false_positive",
         "true_positive"
       ],
       "detected": true
@@ -654,9 +668,11 @@
       "cwe": "CWE-90",
       "category": "ldapi",
       "is_vuln_gt": false,
-      "n_findings": 0,
-      "verdicts": [],
-      "detected": false
+      "n_findings": 1,
+      "verdicts": [
+        "true_positive"
+      ],
+      "detected": true
     },
     {
       "test_name": "BenchmarkTest01169",
@@ -703,8 +719,9 @@
       "cwe": "CWE-502",
       "category": "deserialization",
       "is_vuln_gt": true,
-      "n_findings": 1,
+      "n_findings": 2,
       "verdicts": [
+        "true_positive",
         "true_positive"
       ],
       "detected": true
@@ -714,11 +731,12 @@
       "cwe": "CWE-502",
       "category": "deserialization",
       "is_vuln_gt": false,
-      "n_findings": 1,
+      "n_findings": 2,
       "verdicts": [
-        "true_positive"
+        "false_positive",
+        "false_positive"
       ],
-      "detected": true
+      "detected": false
     },
     {
       "test_name": "BenchmarkTest00659",
@@ -752,22 +770,18 @@
       "cwe": "CWE-79",
       "category": "xss",
       "is_vuln_gt": false,
-      "n_findings": 1,
-      "verdicts": [
-        "true_positive"
-      ],
-      "detected": true
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
     },
     {
       "test_name": "BenchmarkTest00334",
       "cwe": "CWE-79",
       "category": "xss",
       "is_vuln_gt": false,
-      "n_findings": 1,
-      "verdicts": [
-        "true_positive"
-      ],
-      "detected": true
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
     },
     {
       "test_name": "BenchmarkTest00923",
@@ -783,8 +797,10 @@
       "cwe": "CWE-79",
       "category": "xss",
       "is_vuln_gt": true,
-      "n_findings": 0,
-      "verdicts": [],
+      "n_findings": 1,
+      "verdicts": [
+        "false_positive"
+      ],
       "detected": false
     },
     {
@@ -801,20 +817,17 @@
       "cwe": "CWE-89",
       "category": "sqli",
       "is_vuln_gt": true,
-      "n_findings": 1,
-      "verdicts": [
-        "true_positive"
-      ],
-      "detected": true
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
     },
     {
       "test_name": "BenchmarkTest00454",
       "cwe": "CWE-89",
       "category": "sqli",
       "is_vuln_gt": true,
-      "n_findings": 2,
+      "n_findings": 1,
       "verdicts": [
-        "true_positive",
         "true_positive"
       ],
       "detected": true
@@ -824,11 +837,9 @@
       "cwe": "CWE-89",
       "category": "sqli",
       "is_vuln_gt": true,
-      "n_findings": 1,
-      "verdicts": [
-        "true_positive"
-      ],
-      "detected": true
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
     },
     {
       "test_name": "BenchmarkTest00268",
@@ -844,8 +855,10 @@
       "cwe": "CWE-78",
       "category": "cmdi",
       "is_vuln_gt": true,
-      "n_findings": 1,
+      "n_findings": 3,
       "verdicts": [
+        "true_positive",
+        "true_positive",
         "true_positive"
       ],
       "detected": true
@@ -864,8 +877,11 @@
       "cwe": "CWE-611",
       "category": "xxe",
       "is_vuln_gt": true,
-      "n_findings": 0,
-      "verdicts": [],
+      "n_findings": 2,
+      "verdicts": [
+        "uncertain",
+        "uncertain"
+      ],
       "detected": false
     },
     {
@@ -873,8 +889,11 @@
       "cwe": "CWE-611",
       "category": "xxe",
       "is_vuln_gt": true,
-      "n_findings": 0,
-      "verdicts": [],
+      "n_findings": 2,
+      "verdicts": [
+        "uncertain",
+        "uncertain"
+      ],
       "detected": false
     },
     {
@@ -882,8 +901,11 @@
       "cwe": "CWE-611",
       "category": "xxe",
       "is_vuln_gt": true,
-      "n_findings": 2,
+      "n_findings": 5,
       "verdicts": [
+        "uncertain",
+        "uncertain",
+        "uncertain",
         "true_positive",
         "true_positive"
       ],
@@ -894,63 +916,67 @@
       "cwe": "CWE-90",
       "category": "ldapi",
       "is_vuln_gt": true,
-      "n_findings": 0,
-      "verdicts": [],
-      "detected": false
+      "n_findings": 1,
+      "verdicts": [
+        "true_positive"
+      ],
+      "detected": true
     },
     {
       "test_name": "BenchmarkTest00824",
       "cwe": "CWE-90",
       "category": "ldapi",
       "is_vuln_gt": true,
-      "n_findings": 0,
-      "verdicts": [],
-      "detected": false
+      "n_findings": 1,
+      "verdicts": [
+        "true_positive"
+      ],
+      "detected": true
     },
     {
       "test_name": "BenchmarkTest00823",
       "cwe": "CWE-90",
       "category": "ldapi",
       "is_vuln_gt": true,
-      "n_findings": 0,
-      "verdicts": [],
-      "detected": false
+      "n_findings": 2,
+      "verdicts": [
+        "true_positive",
+        "false_positive"
+      ],
+      "detected": true
     },
     {
       "test_name": "BenchmarkTest00812",
       "cwe": "CWE-614",
       "category": "securecookie",
       "is_vuln_gt": false,
-      "n_findings": 2,
+      "n_findings": 1,
       "verdicts": [
-        "true_positive",
-        "true_positive"
+        "false_positive"
       ],
-      "detected": true
+      "detected": false
     },
     {
       "test_name": "BenchmarkTest00415",
       "cwe": "CWE-614",
       "category": "securecookie",
       "is_vuln_gt": false,
-      "n_findings": 2,
+      "n_findings": 1,
       "verdicts": [
-        "true_positive",
-        "true_positive"
+        "false_positive"
       ],
-      "detected": true
+      "detected": false
     },
     {
       "test_name": "BenchmarkTest00811",
       "cwe": "CWE-614",
       "category": "securecookie",
       "is_vuln_gt": false,
-      "n_findings": 2,
+      "n_findings": 1,
       "verdicts": [
-        "true_positive",
-        "true_positive"
+        "false_positive"
       ],
-      "detected": true
+      "detected": false
     },
     {
       "test_name": "BenchmarkTest01098",

@@ -80,8 +80,6 @@ def validate_llm_response(llm):
 
 
 def build_prompt(check_ids, cwe, message, fragment, stack, lang, refs):
-    """Build the verification prompt for the LLM."""
-    rules_txt = "\n".join(f"- {r}" for r in check_ids)
     if refs:
         refs_txt = "\n\n".join(
             f"[{r['cwe']} — {r['name']}] (similitud {score:.2f})\n"
@@ -90,57 +88,69 @@ def build_prompt(check_ids, cwe, message, fragment, stack, lang, refs):
             for score, r in refs
         )
     else:
-        refs_txt = "(sin referencias del corpus; describe el cambio conceptual, no inventes APIs)"
+        refs_txt = "(sin referencias del corpus)"
 
     lang_note = (
-        f"LENGUAJE DEL FRAGMENTO: {lang}. El suggested_fix DEBE estar escrito en {lang}."
+        f"LENGUAJE DEL FRAGMENTO: {lang}. El suggested_fix DEBE estar en {lang}."
         if lang != "generic"
-        else "LENGUAJE DEL FRAGMENTO: inferido del código. Adapta el fix a ese lenguaje."
+        else "LENGUAJE DEL FRAGMENTO: inferido del código."
     )
 
-    return f"""Eres un analista de seguridad. Verificas un hallazgo de Semgrep. Debes decidir si el CÓDIGO es vulnerable, NO si la regla es perfecta.
+    # NOTE: check_ids and message are deliberately NOT included in the prompt.
+    # They are Semgrep's hypothesis and act as an anchor. The LLM must judge
+    # the code from scratch, using only the CWE category as a hypothesis.
 
-Stack del proyecto: {stack}
+    return f"""Eres un analista de seguridad. Verificas un hallazgo. Tu tarea es
+decidir si la línea marcada con >> contiene REALMENTE una vulnerabilidad del
+tipo {cwe}.
+
+Stack: {stack}
 {lang_note}
 
-Reglas activadas:
-{rules_txt}
-
-CWE: {cwe}
-Mensaje de Semgrep: {message}
-
-Código (>> = línea reportada):
+CÓDIGO (>> = línea reportada):
 {fragment}
 
-REFERENCIA (usa estos patrones para construir el suggested_fix):
+REFERENCIA de patrones conocidos:
 {refs_txt}
 
-Proceso obligatorio:
-PASO 1 — Analiza el código. ¿Hay input controlable por el usuario que llega sin sanitizar a una operación peligrosa (eval, SQL, redirect, exec)? Si SÍ, es true_positive aunque la regla esté mal etiquetada.
-PASO 2 — Solo si el código claramente NO es vulnerable, revisa si la regla es incompatible con el lenguaje del proyecto.
+Análisis obligatorio (sigue los 3 pasos en orden):
+PASO 1 — Identifica la operación peligrosa en la línea >>. ¿Es una operación
+peligrosa? (SQL, eval, exec, subprocess con shell=True, redirect a URL
+controlable, cookie sin flags, pickle/yaml.load, import xml, etc.).
+
+PASO 2 — Traza el flujo de datos. ¿La operación usa datos controlables por el
+usuario? Busca fuentes (request.form.get, request.args.get, request.cookies,
+eval/exec de input) y comprueba si hay sanitización en el fragmento visible
+(html.escape, escape_for_html, parametrización con ?, safe_load, defusedxml,
+secure=True + httponly=True + samesite='Lax' en cookies).
+
+PASO 3 — Emite veredicto:
+- true_positive: hay flujo controlable Y no hay sanitización visible.
+- false_positive: hay sanitización visible O no hay flujo controlable O la
+  operación no es peligrosa en este contexto.
+- uncertain: el fragmento es insuficiente para decidir (código no visible).
+
+REGLAS CRÍTICAS:
+- El 50% de los casos en este dataset son seguros por diseño. Sé riguroso.
+- NUNCA confirmes una vulnerabilidad sin evidencia de flujo en el fragmento.
+- Si ves sanitización en el fragmento, es false_positive con confianza alta.
+- Ante duda real, uncertain (NO true_positive).
 
 Responde SOLO JSON:
-{{"verdict": "true_positive|false_positive|uncertain", "confidence": "high|medium|low", "reasoning": "por qué, en 1-2 frases en español", "suggested_fix": "fix CONCRETO con código, en el lenguaje del fragmento. Vacío si FP"}}
+{{"verdict": "true_positive|false_positive|uncertain", "confidence": "high|medium|low", "reasoning": "por qué, en 1-2 frases, citando la evidencia del fragmento", "suggested_fix": "código concreto en {lang}, vacío si FP"}}
 
-Reglas estrictas:
-- El suggested_fix debe ser CÓDIGO concreto, no descripción. Si el fragmento tiene N variables controlables, escribe N líneas (una por variable).
-- Usa la misma FORMA de la REFERENCIA (parseFloat, process.env, whitelist, prepared statement), pero adaptada a las variables, tipos y LENGUAJE del fragmento.
-- Preserva los valores exactos del fragmento (URLs, nombres de variables, strings). Aplica el cambio mínimo.
-- NUNCA uses el lenguaje de la referencia si difiere del fragmento: fragmento Python → fix Python (os.environ); fragmento JS → fix JS (process.env); fragmento HTML → fix HTML.
-- Si la REFERENCIA está vacía, describe el cambio conceptual en lugar de inventar APIs o funciones que no conoces.
-- NO menciones nombres de archivo ni contenido que no aparezca en el fragmento.
-- Si el código es vulnerable, es true_positive aunque la regla esté mal etiquetada.
-- Ante duda real, false_positive (no uncertain).
-  El default debe ser false_positive salvo evidencia clara de explotabilidad.
-  El contexto del proyecto puede ser un benchmark de seguridad donde
-  ~50% de los casos son seguros por diseño — sé estricto.
-  No aceptes un hallazgo solo porque Semgrep lo marcó."""
+Reglas estrictas del fix:
+- Debe ser CÓDIGO concreto en {lang}, no descripción.
+- Preserva los valores exactos del fragmento (variables, strings, URLs).
+- Si no hay REFERENCIA, describe el cambio conceptual sin inventar APIs.
+- NO menciones archivos ni contenido fuera del fragmento."""
 
 
 def verify(grouped, stack):
     """Verify a single grouped finding (multiple rules on same line)."""
     meta = grouped.get("metadata", {})
-    cwe_raw = (meta.get("cwe") or ["desconocido"])[0]
+    cwe_field = meta.get("cwe") or ["desconocido"]
+    cwe_raw = cwe_field[0] if isinstance(cwe_field, list) else cwe_field
     cwe = cwe_raw if len(cwe_raw) > 3 else "desconocido"
 
     compatible_ids = [c for c in grouped["check_ids"] if is_rule_compatible(c, stack)]

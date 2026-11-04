@@ -12,6 +12,7 @@ import subprocess
 import sys
 from datetime import datetime
 from pathlib import Path
+import os
 
 from src.orchestrator.verify import detect_stack, verify, SEVERITY_RANK
 
@@ -25,8 +26,17 @@ NOISE_PATH_PATTERNS = [
 
 
 def run_semgrep(target):
-    """Run Semgrep and return the full JSON output (not a summary)."""
-    cmd = ["semgrep", "--config=auto", "--quiet", "--json", target]
+    """Run Semgrep with configurable rulesets.
+
+    SEMGREP_CONFIGS env var (space-separated) or 'auto'.
+    --no-git-ignore is required because the benchmark subset lives
+    in a .gitignore'd directory.
+    """
+    configs = os.environ.get("SEMGREP_CONFIGS", "auto").split()
+    cmd = ["semgrep"]
+    for c in configs:
+        cmd.append(f"--config={c}")
+    cmd.extend(["--no-git-ignore", "--quiet", "--json", target])
     result = subprocess.run(cmd, capture_output=True, text=True, timeout=600)
     try:
         return json.loads(result.stdout)

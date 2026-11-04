@@ -39,20 +39,32 @@ def run_pipeline():
         "--max", "300",
         "--min-severity", "INFO",
     ]
+    reports_dir = PROJECT_ROOT / "reports"
+    before = {p.name for p in reports_dir.glob("report_*.json")}
+    print(f"Reports antes: {len(before)}", file=sys.stderr)
     print(f"Running: {' '.join(cmd)}", file=sys.stderr)
-    print("Expected duration: 15-25 min for 60 cases at ~30s/finding",
-          file=sys.stderr)
+
     result = subprocess.run(cmd, capture_output=True, text=True, timeout=7200)
     print(result.stdout[-3000:], file=sys.stderr)
     if result.returncode != 0:
         print(f"Pipeline failed:\n{result.stderr[:2000]}", file=sys.stderr)
         sys.exit(1)
-    reports = sorted((PROJECT_ROOT / "reports").glob("report_*.json"))
-    if not reports:
-        print("No report found", file=sys.stderr)
-        sys.exit(1)
-    print(f"Using report: {reports[-1].name}", file=sys.stderr)
-    return json.loads(reports[-1].read_text(encoding="utf-8"))
+
+    after = {p.name for p in reports_dir.glob("report_*.json")}
+    new_reports = sorted(after - before)
+    if not new_reports:
+        print("=" * 60, file=sys.stderr)
+        print("[FATAL] Pipeline no generó reporte nuevo.", file=sys.stderr)
+        print("  Causas probables:", file=sys.stderr)
+        print("    - 0 findings → main() hace early return", file=sys.stderr)
+        print("    - SEMGREP_CONFIGS no llega a run_semgrep()", file=sys.stderr)
+        print("    - .gitignore bloquea el subset (requiere --no-git-ignore)", file=sys.stderr)
+        print("=" * 60, file=sys.stderr)
+        sys.exit(3)
+
+    latest = reports_dir / new_reports[-1]
+    print(f"Usando reporte nuevo: {latest.name}", file=sys.stderr)
+    return json.loads(latest.read_text(encoding="utf-8"))
 
 
 def evaluate(gt, report):
@@ -90,6 +102,15 @@ def evaluate(gt, report):
             overall["fp"] += 1; per_cwe[cwe]["fp"] += 1
         else:
             overall["tn"] += 1; per_cwe[cwe]["tn"] += 1
+    
+    # Contadores para auditoría
+    stats = {"tp_llm": 0, "fp_llm": 0, "uncertain_llm": 0}
+    for f in report["findings"]:
+        v = f["llm"]["verdict"]
+        if v == "true_positive": stats["tp_llm"] += 1
+        elif v == "false_positive": stats["fp_llm"] += 1
+        else: stats["uncertain_llm"] += 1
+    print(f"[LLM] verdicts: TP={stats['tp_llm']} FP={stats['fp_llm']} UN={stats['uncertain_llm']}", file=sys.stderr)
 
     return overall, dict(per_cwe), per_case
 
