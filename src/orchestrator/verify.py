@@ -130,7 +130,11 @@ Reglas estrictas:
 - Si la REFERENCIA está vacía, describe el cambio conceptual en lugar de inventar APIs o funciones que no conoces.
 - NO menciones nombres de archivo ni contenido que no aparezca en el fragmento.
 - Si el código es vulnerable, es true_positive aunque la regla esté mal etiquetada.
-- Ante duda real, uncertain (no false_positive por defecto)."""
+- Ante duda real, false_positive (no uncertain).
+  El default debe ser false_positive salvo evidencia clara de explotabilidad.
+  El contexto del proyecto puede ser un benchmark de seguridad donde
+  ~50% de los casos son seguros por diseño — sé estricto.
+  No aceptes un hallazgo solo porque Semgrep lo marcó."""
 
 
 def verify(grouped, stack):
