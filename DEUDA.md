@@ -30,10 +30,18 @@ None. The system is functional and tested.
 - **Fix:** make `filename` a required parameter, remove default from schema
 - **Effort:** 5 min
 
-### No pytest suite
-- **Impact:** low (manual smoke tests via `test_retrieval.py` and CLI)
-- **Fix:** create `tests/` with pytest; imports from `src.*` now work cleanly
-- **Effort:** 2-3 hours
+### Incomplete module coverage in pytest suite
+- **Impact:** silent regressions in modules that depend on subprocess/network/Ollama
+- **Current coverage by module:**
+  - `planner/planner.py` — 0% (spawns `agent_tools.py` as subprocess)
+  - `tools/dirsearch.py` — 11% (needs dirsearch + network)
+  - `rag/index.py` — 0% (calls Ollama embed for real; tested indirectly via `build_index.py`)
+  - `agent/cli.py` — 0% (argparse wrapper)
+  - `orchestrator/pipeline.py` `main()` — 61% (end-to-end orchestration)
+  - `orchestrator/report_md.py` `main_cli()` — 86% (CLI wrapper)
+  - `agent/react_loop.py` — 93% (abort branches inside loop)
+- **Fix:** integration tests for `main()` and `main_cli()`; mock `subprocess` and `urllib` in planner/dirsearch; skip `rag/index.py` (already covered by `build_index.py` smoke)
+- **Effort:** 4-6 hours
 
 ## Low priority
 
@@ -110,3 +118,13 @@ Solution: `planner.py` splits complex goals into sub-goals.
 - [x] `read_fragment` unified in `src/core/utils.py`
 - [x] `.gitignore` covers generated Markdown reports (`reports/report_*.md`)
 - [x] Dirsearch integration as `src/tools/dirsearch.py` (Python API, metadata-only output)
+
+### v0.4 — pytest suite
+- [x] 161 tests covering 11 of 17 source modules
+- [x] 72% overall coverage; 9 modules at 100%
+- [x] Tests for `_looks_like_summary`, loop detection, tool fallback, dedup guard
+- [x] Tests for `verify()` with mocked LLM + RAG (100%)
+- [x] Tests for RAG retrieval with fixture corpus (100%)
+- [x] HTTP layer tests via `FakeResponse` context manager (100% of `core/llm.py`)
+- [x] `pytest.ini`, `tests/conftest.py` for path resolution
+- [x] `.gitignore` extended for `.pytest_cache/`, `.coverage`, `htmlcov/`

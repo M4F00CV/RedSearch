@@ -19,6 +19,7 @@ Local-first security analysis agent: deterministic tools (Semgrep, gitleaks, dir
 | Static analysis | Semgrep, gitleaks, dirsearch |
 | Language | Python 3.12 |
 | RAG storage | NumPy vectors + SQLite |
+| Testing | pytest, pytest-cov |
 | Environment | WSL2 Ubuntu 24.04 (`networkingMode=mirrored`) |
 
 ## Prerequisites
@@ -59,7 +60,7 @@ cd ~/RedSearch
 python3 -m venv .venv
 source .venv/bin/activate
 pip install --upgrade pip setuptools
-pip install dirsearch numpy
+pip install dirsearch numpy pytest pytest-cov
 ```
 
 ### 4. RAG index
@@ -151,6 +152,8 @@ RedSearch/
 ├── planner.py                # legacy wrapper → src.planner.planner
 ├── build_index.py            # legacy wrapper → src.rag.index
 ├── test_retrieval.py         # 9-query retrieval check
+├── pytest.ini                # pytest config (testpaths=tests)
+├── tests/                    # pytest suite (161 tests, 72% coverage)
 ├── data/
 │   ├── corpus.json           # 17 CWEs
 │   ├── structure.md          # documentation guide for this project
@@ -262,12 +265,16 @@ Project documentation (docstrings, comments, README) follows the style rules in 
 
 ```bash
 source .venv/bin/activate
+
+# Full suite (161 tests, ~1s)
+pytest
+
+# With coverage report
+pytest --cov=src --cov-report=term-missing
+
+# Retrieval sanity check (independent of pytest)
 python3 test_retrieval.py
 # Expected: 9/9 passed
 ```
 
-No pytest suite yet. See [DEUDA.md](DEUDA.md).
-
-## License
-
-MIT
+Coverage: 72% overall. Fully covered modules: `core/utils.py`, `core/llm.py`, `orchestrator/verify.py`, `tools/semgrep.py`, `tools/gitleaks.py`, `tools/files.py`, `rag/retrieve.py`, `tools/corpus.py`. Modules requiring subprocess/network/Ollama are intentionally untested at unit level (see [DEUDA.md](DEUDA.md)).
