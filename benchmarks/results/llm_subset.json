@@ -1,0 +1,989 @@
+{
+  "overall": {
+    "tp": 18,
+    "fp": 16,
+    "tn": 26,
+    "fn": 24,
+    "tpr": 0.4286,
+    "fpr": 0.381,
+    "precision": 0.5294,
+    "score": 0.0476
+  },
+  "per_cwe": {
+    "CWE-22": {
+      "tp": 1,
+      "fp": 0,
+      "tn": 3,
+      "fn": 2,
+      "tpr": 0.3333,
+      "fpr": 0.0,
+      "precision": 1.0,
+      "score": 0.3333
+    },
+    "CWE-328": {
+      "tp": 1,
+      "fp": 1,
+      "tn": 2,
+      "fn": 2,
+      "tpr": 0.3333,
+      "fpr": 0.3333,
+      "precision": 0.5,
+      "score": 0.0
+    },
+    "CWE-330": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 3,
+      "fn": 3,
+      "tpr": 0.0,
+      "fpr": 0.0,
+      "precision": 0.0,
+      "score": 0.0
+    },
+    "CWE-501": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 3,
+      "fn": 3,
+      "tpr": 0.0,
+      "fpr": 0.0,
+      "precision": 0.0,
+      "score": 0.0
+    },
+    "CWE-502": {
+      "tp": 3,
+      "fp": 1,
+      "tn": 2,
+      "fn": 0,
+      "tpr": 1.0,
+      "fpr": 0.3333,
+      "precision": 0.75,
+      "score": 0.6667
+    },
+    "CWE-601": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 3,
+      "fn": 3,
+      "tpr": 0.0,
+      "fpr": 0.0,
+      "precision": 0.0,
+      "score": 0.0
+    },
+    "CWE-611": {
+      "tp": 1,
+      "fp": 0,
+      "tn": 3,
+      "fn": 2,
+      "tpr": 0.3333,
+      "fpr": 0.0,
+      "precision": 1.0,
+      "score": 0.3333
+    },
+    "CWE-614": {
+      "tp": 3,
+      "fp": 3,
+      "tn": 0,
+      "fn": 0,
+      "tpr": 1.0,
+      "fpr": 1.0,
+      "precision": 0.5,
+      "score": 0.0
+    },
+    "CWE-643": {
+      "tp": 2,
+      "fp": 2,
+      "tn": 1,
+      "fn": 1,
+      "tpr": 0.6667,
+      "fpr": 0.6667,
+      "precision": 0.5,
+      "score": 0.0
+    },
+    "CWE-78": {
+      "tp": 1,
+      "fp": 3,
+      "tn": 0,
+      "fn": 2,
+      "tpr": 0.3333,
+      "fpr": 1.0,
+      "precision": 0.25,
+      "score": -0.6667
+    },
+    "CWE-79": {
+      "tp": 0,
+      "fp": 2,
+      "tn": 1,
+      "fn": 3,
+      "tpr": 0.0,
+      "fpr": 0.6667,
+      "precision": 0.0,
+      "score": -0.6667
+    },
+    "CWE-89": {
+      "tp": 3,
+      "fp": 1,
+      "tn": 2,
+      "fn": 0,
+      "tpr": 1.0,
+      "fpr": 0.3333,
+      "precision": 0.75,
+      "score": 0.6667
+    },
+    "CWE-90": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 3,
+      "fn": 3,
+      "tpr": 0.0,
+      "fpr": 0.0,
+      "precision": 0.0,
+      "score": 0.0
+    },
+    "CWE-94": {
+      "tp": 3,
+      "fp": 3,
+      "tn": 0,
+      "fn": 0,
+      "tpr": 1.0,
+      "fpr": 1.0,
+      "precision": 0.5,
+      "score": 0.0
+    }
+  },
+  "per_case": [
+    {
+      "test_name": "BenchmarkTest00180",
+      "cwe": "CWE-22",
+      "category": "pathtraver",
+      "is_vuln_gt": true,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest00008",
+      "cwe": "CWE-22",
+      "category": "pathtraver",
+      "is_vuln_gt": true,
+      "n_findings": 1,
+      "verdicts": [
+        "true_positive"
+      ],
+      "detected": true
+    },
+    {
+      "test_name": "BenchmarkTest00618",
+      "cwe": "CWE-22",
+      "category": "pathtraver",
+      "is_vuln_gt": true,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest00440",
+      "cwe": "CWE-22",
+      "category": "pathtraver",
+      "is_vuln_gt": false,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest00359",
+      "cwe": "CWE-22",
+      "category": "pathtraver",
+      "is_vuln_gt": false,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest00181",
+      "cwe": "CWE-22",
+      "category": "pathtraver",
+      "is_vuln_gt": false,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest00012",
+      "cwe": "CWE-89",
+      "category": "sqli",
+      "is_vuln_gt": false,
+      "n_findings": 1,
+      "verdicts": [
+        "true_positive"
+      ],
+      "detected": true
+    },
+    {
+      "test_name": "BenchmarkTest01021",
+      "cwe": "CWE-89",
+      "category": "sqli",
+      "is_vuln_gt": false,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest01229",
+      "cwe": "CWE-89",
+      "category": "sqli",
+      "is_vuln_gt": false,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest01029",
+      "cwe": "CWE-643",
+      "category": "xpathi",
+      "is_vuln_gt": false,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest00024",
+      "cwe": "CWE-643",
+      "category": "xpathi",
+      "is_vuln_gt": false,
+      "n_findings": 1,
+      "verdicts": [
+        "true_positive"
+      ],
+      "detected": true
+    },
+    {
+      "test_name": "BenchmarkTest00023",
+      "cwe": "CWE-643",
+      "category": "xpathi",
+      "is_vuln_gt": false,
+      "n_findings": 1,
+      "verdicts": [
+        "true_positive"
+      ],
+      "detected": true
+    },
+    {
+      "test_name": "BenchmarkTest00206",
+      "cwe": "CWE-611",
+      "category": "xxe",
+      "is_vuln_gt": false,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest00459",
+      "cwe": "CWE-611",
+      "category": "xxe",
+      "is_vuln_gt": false,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest00461",
+      "cwe": "CWE-611",
+      "category": "xxe",
+      "is_vuln_gt": false,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest00535",
+      "cwe": "CWE-643",
+      "category": "xpathi",
+      "is_vuln_gt": true,
+      "n_findings": 1,
+      "verdicts": [
+        "true_positive"
+      ],
+      "detected": true
+    },
+    {
+      "test_name": "BenchmarkTest00555",
+      "cwe": "CWE-643",
+      "category": "xpathi",
+      "is_vuln_gt": true,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest00019",
+      "cwe": "CWE-643",
+      "category": "xpathi",
+      "is_vuln_gt": true,
+      "n_findings": 1,
+      "verdicts": [
+        "true_positive"
+      ],
+      "detected": true
+    },
+    {
+      "test_name": "BenchmarkTest00945",
+      "cwe": "CWE-330",
+      "category": "weakrand",
+      "is_vuln_gt": true,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest00309",
+      "cwe": "CWE-330",
+      "category": "weakrand",
+      "is_vuln_gt": true,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest01128",
+      "cwe": "CWE-330",
+      "category": "weakrand",
+      "is_vuln_gt": true,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest00870",
+      "cwe": "CWE-330",
+      "category": "weakrand",
+      "is_vuln_gt": false,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest00962",
+      "cwe": "CWE-330",
+      "category": "weakrand",
+      "is_vuln_gt": false,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest00706",
+      "cwe": "CWE-330",
+      "category": "weakrand",
+      "is_vuln_gt": false,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest00874",
+      "cwe": "CWE-328",
+      "category": "hash",
+      "is_vuln_gt": true,
+      "n_findings": 1,
+      "verdicts": [
+        "true_positive"
+      ],
+      "detected": true
+    },
+    {
+      "test_name": "BenchmarkTest00484",
+      "cwe": "CWE-328",
+      "category": "hash",
+      "is_vuln_gt": true,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest00975",
+      "cwe": "CWE-328",
+      "category": "hash",
+      "is_vuln_gt": true,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest01153",
+      "cwe": "CWE-328",
+      "category": "hash",
+      "is_vuln_gt": false,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest00590",
+      "cwe": "CWE-328",
+      "category": "hash",
+      "is_vuln_gt": false,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest00055",
+      "cwe": "CWE-328",
+      "category": "hash",
+      "is_vuln_gt": false,
+      "n_findings": 1,
+      "verdicts": [
+        "true_positive"
+      ],
+      "detected": true
+    },
+    {
+      "test_name": "BenchmarkTest00592",
+      "cwe": "CWE-614",
+      "category": "securecookie",
+      "is_vuln_gt": true,
+      "n_findings": 2,
+      "verdicts": [
+        "true_positive",
+        "true_positive"
+      ],
+      "detected": true
+    },
+    {
+      "test_name": "BenchmarkTest01177",
+      "cwe": "CWE-614",
+      "category": "securecookie",
+      "is_vuln_gt": true,
+      "n_findings": 3,
+      "verdicts": [
+        "true_positive",
+        "true_positive",
+        "true_positive"
+      ],
+      "detected": true
+    },
+    {
+      "test_name": "BenchmarkTest00808",
+      "cwe": "CWE-614",
+      "category": "securecookie",
+      "is_vuln_gt": true,
+      "n_findings": 2,
+      "verdicts": [
+        "true_positive",
+        "true_positive"
+      ],
+      "detected": true
+    },
+    {
+      "test_name": "BenchmarkTest00496",
+      "cwe": "CWE-601",
+      "category": "redirect",
+      "is_vuln_gt": true,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest00495",
+      "cwe": "CWE-601",
+      "category": "redirect",
+      "is_vuln_gt": true,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest00258",
+      "cwe": "CWE-601",
+      "category": "redirect",
+      "is_vuln_gt": true,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest00597",
+      "cwe": "CWE-601",
+      "category": "redirect",
+      "is_vuln_gt": false,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest00724",
+      "cwe": "CWE-601",
+      "category": "redirect",
+      "is_vuln_gt": false,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest00417",
+      "cwe": "CWE-601",
+      "category": "redirect",
+      "is_vuln_gt": false,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest00152",
+      "cwe": "CWE-501",
+      "category": "trustbound",
+      "is_vuln_gt": false,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest00985",
+      "cwe": "CWE-501",
+      "category": "trustbound",
+      "is_vuln_gt": false,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest00154",
+      "cwe": "CWE-501",
+      "category": "trustbound",
+      "is_vuln_gt": false,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest00725",
+      "cwe": "CWE-501",
+      "category": "trustbound",
+      "is_vuln_gt": true,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest00984",
+      "cwe": "CWE-501",
+      "category": "trustbound",
+      "is_vuln_gt": true,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest00501",
+      "cwe": "CWE-501",
+      "category": "trustbound",
+      "is_vuln_gt": true,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest00156",
+      "cwe": "CWE-94",
+      "category": "codeinj",
+      "is_vuln_gt": false,
+      "n_findings": 1,
+      "verdicts": [
+        "true_positive"
+      ],
+      "detected": true
+    },
+    {
+      "test_name": "BenchmarkTest01164",
+      "cwe": "CWE-94",
+      "category": "codeinj",
+      "is_vuln_gt": false,
+      "n_findings": 1,
+      "verdicts": [
+        "true_positive"
+      ],
+      "detected": true
+    },
+    {
+      "test_name": "BenchmarkTest00263",
+      "cwe": "CWE-94",
+      "category": "codeinj",
+      "is_vuln_gt": false,
+      "n_findings": 1,
+      "verdicts": [
+        "true_positive"
+      ],
+      "detected": true
+    },
+    {
+      "test_name": "BenchmarkTest00729",
+      "cwe": "CWE-94",
+      "category": "codeinj",
+      "is_vuln_gt": true,
+      "n_findings": 1,
+      "verdicts": [
+        "true_positive"
+      ],
+      "detected": true
+    },
+    {
+      "test_name": "BenchmarkTest00160",
+      "cwe": "CWE-94",
+      "category": "codeinj",
+      "is_vuln_gt": true,
+      "n_findings": 1,
+      "verdicts": [
+        "true_positive"
+      ],
+      "detected": true
+    },
+    {
+      "test_name": "BenchmarkTest00894",
+      "cwe": "CWE-94",
+      "category": "codeinj",
+      "is_vuln_gt": true,
+      "n_findings": 1,
+      "verdicts": [
+        "true_positive"
+      ],
+      "detected": true
+    },
+    {
+      "test_name": "BenchmarkTest00732",
+      "cwe": "CWE-90",
+      "category": "ldapi",
+      "is_vuln_gt": false,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest01169",
+      "cwe": "CWE-90",
+      "category": "ldapi",
+      "is_vuln_gt": false,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest01168",
+      "cwe": "CWE-90",
+      "category": "ldapi",
+      "is_vuln_gt": false,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest00825",
+      "cwe": "CWE-502",
+      "category": "deserialization",
+      "is_vuln_gt": true,
+      "n_findings": 1,
+      "verdicts": [
+        "true_positive"
+      ],
+      "detected": true
+    },
+    {
+      "test_name": "BenchmarkTest00510",
+      "cwe": "CWE-502",
+      "category": "deserialization",
+      "is_vuln_gt": true,
+      "n_findings": 1,
+      "verdicts": [
+        "true_positive"
+      ],
+      "detected": true
+    },
+    {
+      "test_name": "BenchmarkTest00269",
+      "cwe": "CWE-502",
+      "category": "deserialization",
+      "is_vuln_gt": true,
+      "n_findings": 1,
+      "verdicts": [
+        "true_positive"
+      ],
+      "detected": true
+    },
+    {
+      "test_name": "BenchmarkTest00081",
+      "cwe": "CWE-502",
+      "category": "deserialization",
+      "is_vuln_gt": false,
+      "n_findings": 1,
+      "verdicts": [
+        "true_positive"
+      ],
+      "detected": true
+    },
+    {
+      "test_name": "BenchmarkTest00659",
+      "cwe": "CWE-502",
+      "category": "deserialization",
+      "is_vuln_gt": false,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest00901",
+      "cwe": "CWE-502",
+      "category": "deserialization",
+      "is_vuln_gt": false,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest00185",
+      "cwe": "CWE-79",
+      "category": "xss",
+      "is_vuln_gt": false,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest01155",
+      "cwe": "CWE-79",
+      "category": "xss",
+      "is_vuln_gt": false,
+      "n_findings": 1,
+      "verdicts": [
+        "true_positive"
+      ],
+      "detected": true
+    },
+    {
+      "test_name": "BenchmarkTest00334",
+      "cwe": "CWE-79",
+      "category": "xss",
+      "is_vuln_gt": false,
+      "n_findings": 1,
+      "verdicts": [
+        "true_positive"
+      ],
+      "detected": true
+    },
+    {
+      "test_name": "BenchmarkTest00923",
+      "cwe": "CWE-79",
+      "category": "xss",
+      "is_vuln_gt": true,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest00169",
+      "cwe": "CWE-79",
+      "category": "xss",
+      "is_vuln_gt": true,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest00366",
+      "cwe": "CWE-79",
+      "category": "xss",
+      "is_vuln_gt": true,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest00284",
+      "cwe": "CWE-89",
+      "category": "sqli",
+      "is_vuln_gt": true,
+      "n_findings": 1,
+      "verdicts": [
+        "true_positive"
+      ],
+      "detected": true
+    },
+    {
+      "test_name": "BenchmarkTest00454",
+      "cwe": "CWE-89",
+      "category": "sqli",
+      "is_vuln_gt": true,
+      "n_findings": 2,
+      "verdicts": [
+        "true_positive",
+        "true_positive"
+      ],
+      "detected": true
+    },
+    {
+      "test_name": "BenchmarkTest00455",
+      "cwe": "CWE-89",
+      "category": "sqli",
+      "is_vuln_gt": true,
+      "n_findings": 1,
+      "verdicts": [
+        "true_positive"
+      ],
+      "detected": true
+    },
+    {
+      "test_name": "BenchmarkTest00268",
+      "cwe": "CWE-78",
+      "category": "cmdi",
+      "is_vuln_gt": true,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest00167",
+      "cwe": "CWE-78",
+      "category": "cmdi",
+      "is_vuln_gt": true,
+      "n_findings": 1,
+      "verdicts": [
+        "true_positive"
+      ],
+      "detected": true
+    },
+    {
+      "test_name": "BenchmarkTest01191",
+      "cwe": "CWE-78",
+      "category": "cmdi",
+      "is_vuln_gt": true,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest00930",
+      "cwe": "CWE-611",
+      "category": "xxe",
+      "is_vuln_gt": true,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest00294",
+      "cwe": "CWE-611",
+      "category": "xxe",
+      "is_vuln_gt": true,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest01212",
+      "cwe": "CWE-611",
+      "category": "xxe",
+      "is_vuln_gt": true,
+      "n_findings": 2,
+      "verdicts": [
+        "true_positive",
+        "true_positive"
+      ],
+      "detected": true
+    },
+    {
+      "test_name": "BenchmarkTest00731",
+      "cwe": "CWE-90",
+      "category": "ldapi",
+      "is_vuln_gt": true,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest00824",
+      "cwe": "CWE-90",
+      "category": "ldapi",
+      "is_vuln_gt": true,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest00823",
+      "cwe": "CWE-90",
+      "category": "ldapi",
+      "is_vuln_gt": true,
+      "n_findings": 0,
+      "verdicts": [],
+      "detected": false
+    },
+    {
+      "test_name": "BenchmarkTest00812",
+      "cwe": "CWE-614",
+      "category": "securecookie",
+      "is_vuln_gt": false,
+      "n_findings": 2,
+      "verdicts": [
+        "true_positive",
+        "true_positive"
+      ],
+      "detected": true
+    },
+    {
+      "test_name": "BenchmarkTest00415",
+      "cwe": "CWE-614",
+      "category": "securecookie",
+      "is_vuln_gt": false,
+      "n_findings": 2,
+      "verdicts": [
+        "true_positive",
+        "true_positive"
+      ],
+      "detected": true
+    },
+    {
+      "test_name": "BenchmarkTest00811",
+      "cwe": "CWE-614",
+      "category": "securecookie",
+      "is_vuln_gt": false,
+      "n_findings": 2,
+      "verdicts": [
+        "true_positive",
+        "true_positive"
+      ],
+      "detected": true
+    },
+    {
+      "test_name": "BenchmarkTest01098",
+      "cwe": "CWE-78",
+      "category": "cmdi",
+      "is_vuln_gt": false,
+      "n_findings": 1,
+      "verdicts": [
+        "true_positive"
+      ],
+      "detected": true
+    },
+    {
+      "test_name": "BenchmarkTest00512",
+      "cwe": "CWE-78",
+      "category": "cmdi",
+      "is_vuln_gt": false,
+      "n_findings": 1,
+      "verdicts": [
+        "true_positive"
+      ],
+      "detected": true
+    },
+    {
+      "test_name": "BenchmarkTest01097",
+      "cwe": "CWE-78",
+      "category": "cmdi",
+      "is_vuln_gt": false,
+      "n_findings": 1,
+      "verdicts": [
+        "true_positive"
+      ],
+      "detected": true
+    }
+  ]
+}
