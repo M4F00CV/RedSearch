@@ -1,0 +1,156 @@
+{
+  "config": "benchmarks/rules",
+  "total_cases": 1230,
+  "overall": {
+    "tp": 0,
+    "fp": 0,
+    "tn": 778,
+    "fn": 452,
+    "tpr": 0.0,
+    "fpr": 0.0,
+    "precision": 0.0,
+    "score": 0.0
+  },
+  "per_cwe": {
+    "CWE-22": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 103,
+      "fn": 65,
+      "tpr": 0.0,
+      "fpr": 0.0,
+      "precision": 0.0,
+      "score": 0.0
+    },
+    "CWE-328": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 80,
+      "fn": 71,
+      "tpr": 0.0,
+      "fpr": 0.0,
+      "precision": 0.0,
+      "score": 0.0
+    },
+    "CWE-330": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 227,
+      "fn": 99,
+      "tpr": 0.0,
+      "fpr": 0.0,
+      "precision": 0.0,
+      "score": 0.0
+    },
+    "CWE-501": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 19,
+      "fn": 18,
+      "tpr": 0.0,
+      "fpr": 0.0,
+      "precision": 0.0,
+      "score": 0.0
+    },
+    "CWE-502": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 36,
+      "fn": 18,
+      "tpr": 0.0,
+      "fpr": 0.0,
+      "precision": 0.0,
+      "score": 0.0
+    },
+    "CWE-601": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 21,
+      "fn": 13,
+      "tpr": 0.0,
+      "fpr": 0.0,
+      "precision": 0.0,
+      "score": 0.0
+    },
+    "CWE-611": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 20,
+      "fn": 8,
+      "tpr": 0.0,
+      "fpr": 0.0,
+      "precision": 0.0,
+      "score": 0.0
+    },
+    "CWE-614": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 15,
+      "fn": 24,
+      "tpr": 0.0,
+      "fpr": 0.0,
+      "precision": 0.0,
+      "score": 0.0
+    },
+    "CWE-643": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 135,
+      "fn": 51,
+      "tpr": 0.0,
+      "fpr": 0.0,
+      "precision": 0.0,
+      "score": 0.0
+    },
+    "CWE-78": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 7,
+      "fn": 13,
+      "tpr": 0.0,
+      "fpr": 0.0,
+      "precision": 0.0,
+      "score": 0.0
+    },
+    "CWE-79": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 58,
+      "fn": 31,
+      "tpr": 0.0,
+      "fpr": 0.0,
+      "precision": 0.0,
+      "score": 0.0
+    },
+    "CWE-89": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 11,
+      "fn": 5,
+      "tpr": 0.0,
+      "fpr": 0.0,
+      "precision": 0.0,
+      "score": 0.0
+    },
+    "CWE-90": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 13,
+      "fn": 16,
+      "tpr": 0.0,
+      "fpr": 0.0,
+      "precision": 0.0,
+      "score": 0.0
+    },
+    "CWE-94": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 33,
+      "fn": 20,
+      "tpr": 0.0,
+      "fpr": 0.0,
+      "precision": 0.0,
+      "score": 0.0
+    }
+  }
+}

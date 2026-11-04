@@ -43,22 +43,30 @@ def load_ground_truth():
 
 
 def run_semgrep(config="auto"):
-    """Run Semgrep once on testcode/ and return parsed JSON."""
-    cmd = [
-        "semgrep",
-        f"--config={config}",
-        "--quiet",
-        "--json",
-        "--timeout=60",
-        str(TESTCODE),
-    ]
+    """Run Semgrep once on testcode/ and return parsed JSON.
+
+    config can be space-separated: 'p/python benchmarks/rules'
+    """
+    configs = config.split()
+    cmd = ["semgrep"]
+    for c in configs:
+        cmd.append(f"--config={c}")
+    # Fixed: always append these; NEVER replace them when adding excludes.
+    cmd.extend(["--quiet", "--json", "--timeout=60", str(TESTCODE)])
     print(f"Running: {' '.join(cmd)}", file=sys.stderr)
     print("Expected duration: 10-30 min for ~1230 files", file=sys.stderr)
     result = subprocess.run(cmd, capture_output=True, text=True, timeout=3600)
-    if not result.stdout:
-        print(f"Semgrep stderr: {result.stderr[:2000]}", file=sys.stderr)
+    if not result.stdout or not result.stdout.strip():
+        print(f"Semgrep produced empty stdout.", file=sys.stderr)
+        print(f"stderr (first 2000 chars):\n{result.stderr[:2000]}", file=sys.stderr)
+        print(f"returncode: {result.returncode}", file=sys.stderr)
         sys.exit(1)
-    return json.loads(result.stdout)
+    try:
+        return json.loads(result.stdout)
+    except json.JSONDecodeError as e:
+        print(f"stdout is not JSON. First 500 chars:\n{result.stdout[:500]}", file=sys.stderr)
+        print(f"stderr (first 1000 chars):\n{result.stderr[:1000]}", file=sys.stderr)
+        sys.exit(2)
 
 
 def score(gt, semgrep_results):

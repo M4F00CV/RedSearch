@@ -1,0 +1,25 @@
+rules:
+  - id: bench-python-ldap-injection-taint
+    mode: taint
+    languages: [python]
+    severity: ERROR
+    message: LDAP injection via user-controlled filter
+    metadata:
+      cwe: "CWE-90: Improper Neutralization of Special Elements used in an LDAP Query"
+    pattern-sources:
+      - pattern: flask.request.form.getlist(...)
+      - pattern: flask.request.form.get(...)
+      - pattern: flask.request.args.get(...)
+      - pattern: flask.request.args.getlist(...)
+      - pattern: flask.request.cookies.get(...)
+      - pattern: request.form.getlist(...)
+      - pattern: request.form.get(...)
+      - pattern: request.args.get(...)
+      - pattern: request.args.getlist(...)
+      - pattern: request.cookies.get(...)
+    pattern-sinks:
+      - pattern: $CONN.search(..., $FILTER, ...)
+      - pattern: $CONN.search_s(..., $FILTER, ...)
+    pattern-sanitizers:
+      - pattern: ldap.filter.escape_filter_chars(...)
+      - pattern: escape_filter_chars(...)

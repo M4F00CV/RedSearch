@@ -1,0 +1,422 @@
+{
+  "BenchmarkTest00180": {
+    "category": "pathtraver",
+    "is_vuln": true,
+    "cwe": "CWE-22"
+  },
+  "BenchmarkTest00008": {
+    "category": "pathtraver",
+    "is_vuln": true,
+    "cwe": "CWE-22"
+  },
+  "BenchmarkTest00618": {
+    "category": "pathtraver",
+    "is_vuln": true,
+    "cwe": "CWE-22"
+  },
+  "BenchmarkTest00440": {
+    "category": "pathtraver",
+    "is_vuln": false,
+    "cwe": "CWE-22"
+  },
+  "BenchmarkTest00359": {
+    "category": "pathtraver",
+    "is_vuln": false,
+    "cwe": "CWE-22"
+  },
+  "BenchmarkTest00181": {
+    "category": "pathtraver",
+    "is_vuln": false,
+    "cwe": "CWE-22"
+  },
+  "BenchmarkTest00012": {
+    "category": "sqli",
+    "is_vuln": false,
+    "cwe": "CWE-89"
+  },
+  "BenchmarkTest01021": {
+    "category": "sqli",
+    "is_vuln": false,
+    "cwe": "CWE-89"
+  },
+  "BenchmarkTest01229": {
+    "category": "sqli",
+    "is_vuln": false,
+    "cwe": "CWE-89"
+  },
+  "BenchmarkTest01029": {
+    "category": "xpathi",
+    "is_vuln": false,
+    "cwe": "CWE-643"
+  },
+  "BenchmarkTest00024": {
+    "category": "xpathi",
+    "is_vuln": false,
+    "cwe": "CWE-643"
+  },
+  "BenchmarkTest00023": {
+    "category": "xpathi",
+    "is_vuln": false,
+    "cwe": "CWE-643"
+  },
+  "BenchmarkTest00206": {
+    "category": "xxe",
+    "is_vuln": false,
+    "cwe": "CWE-611"
+  },
+  "BenchmarkTest00459": {
+    "category": "xxe",
+    "is_vuln": false,
+    "cwe": "CWE-611"
+  },
+  "BenchmarkTest00461": {
+    "category": "xxe",
+    "is_vuln": false,
+    "cwe": "CWE-611"
+  },
+  "BenchmarkTest00535": {
+    "category": "xpathi",
+    "is_vuln": true,
+    "cwe": "CWE-643"
+  },
+  "BenchmarkTest00555": {
+    "category": "xpathi",
+    "is_vuln": true,
+    "cwe": "CWE-643"
+  },
+  "BenchmarkTest00019": {
+    "category": "xpathi",
+    "is_vuln": true,
+    "cwe": "CWE-643"
+  },
+  "BenchmarkTest00945": {
+    "category": "weakrand",
+    "is_vuln": true,
+    "cwe": "CWE-330"
+  },
+  "BenchmarkTest00309": {
+    "category": "weakrand",
+    "is_vuln": true,
+    "cwe": "CWE-330"
+  },
+  "BenchmarkTest01128": {
+    "category": "weakrand",
+    "is_vuln": true,
+    "cwe": "CWE-330"
+  },
+  "BenchmarkTest00870": {
+    "category": "weakrand",
+    "is_vuln": false,
+    "cwe": "CWE-330"
+  },
+  "BenchmarkTest00962": {
+    "category": "weakrand",
+    "is_vuln": false,
+    "cwe": "CWE-330"
+  },
+  "BenchmarkTest00706": {
+    "category": "weakrand",
+    "is_vuln": false,
+    "cwe": "CWE-330"
+  },
+  "BenchmarkTest00874": {
+    "category": "hash",
+    "is_vuln": true,
+    "cwe": "CWE-328"
+  },
+  "BenchmarkTest00484": {
+    "category": "hash",
+    "is_vuln": true,
+    "cwe": "CWE-328"
+  },
+  "BenchmarkTest00975": {
+    "category": "hash",
+    "is_vuln": true,
+    "cwe": "CWE-328"
+  },
+  "BenchmarkTest01153": {
+    "category": "hash",
+    "is_vuln": false,
+    "cwe": "CWE-328"
+  },
+  "BenchmarkTest00590": {
+    "category": "hash",
+    "is_vuln": false,
+    "cwe": "CWE-328"
+  },
+  "BenchmarkTest00055": {
+    "category": "hash",
+    "is_vuln": false,
+    "cwe": "CWE-328"
+  },
+  "BenchmarkTest00592": {
+    "category": "securecookie",
+    "is_vuln": true,
+    "cwe": "CWE-614"
+  },
+  "BenchmarkTest01177": {
+    "category": "securecookie",
+    "is_vuln": true,
+    "cwe": "CWE-614"
+  },
+  "BenchmarkTest00808": {
+    "category": "securecookie",
+    "is_vuln": true,
+    "cwe": "CWE-614"
+  },
+  "BenchmarkTest00496": {
+    "category": "redirect",
+    "is_vuln": true,
+    "cwe": "CWE-601"
+  },
+  "BenchmarkTest00495": {
+    "category": "redirect",
+    "is_vuln": true,
+    "cwe": "CWE-601"
+  },
+  "BenchmarkTest00258": {
+    "category": "redirect",
+    "is_vuln": true,
+    "cwe": "CWE-601"
+  },
+  "BenchmarkTest00597": {
+    "category": "redirect",
+    "is_vuln": false,
+    "cwe": "CWE-601"
+  },
+  "BenchmarkTest00724": {
+    "category": "redirect",
+    "is_vuln": false,
+    "cwe": "CWE-601"
+  },
+  "BenchmarkTest00417": {
+    "category": "redirect",
+    "is_vuln": false,
+    "cwe": "CWE-601"
+  },
+  "BenchmarkTest00152": {
+    "category": "trustbound",
+    "is_vuln": false,
+    "cwe": "CWE-501"
+  },
+  "BenchmarkTest00985": {
+    "category": "trustbound",
+    "is_vuln": false,
+    "cwe": "CWE-501"
+  },
+  "BenchmarkTest00154": {
+    "category": "trustbound",
+    "is_vuln": false,
+    "cwe": "CWE-501"
+  },
+  "BenchmarkTest00725": {
+    "category": "trustbound",
+    "is_vuln": true,
+    "cwe": "CWE-501"
+  },
+  "BenchmarkTest00984": {
+    "category": "trustbound",
+    "is_vuln": true,
+    "cwe": "CWE-501"
+  },
+  "BenchmarkTest00501": {
+    "category": "trustbound",
+    "is_vuln": true,
+    "cwe": "CWE-501"
+  },
+  "BenchmarkTest00156": {
+    "category": "codeinj",
+    "is_vuln": false,
+    "cwe": "CWE-94"
+  },
+  "BenchmarkTest01164": {
+    "category": "codeinj",
+    "is_vuln": false,
+    "cwe": "CWE-94"
+  },
+  "BenchmarkTest00263": {
+    "category": "codeinj",
+    "is_vuln": false,
+    "cwe": "CWE-94"
+  },
+  "BenchmarkTest00729": {
+    "category": "codeinj",
+    "is_vuln": true,
+    "cwe": "CWE-94"
+  },
+  "BenchmarkTest00160": {
+    "category": "codeinj",
+    "is_vuln": true,
+    "cwe": "CWE-94"
+  },
+  "BenchmarkTest00894": {
+    "category": "codeinj",
+    "is_vuln": true,
+    "cwe": "CWE-94"
+  },
+  "BenchmarkTest00732": {
+    "category": "ldapi",
+    "is_vuln": false,
+    "cwe": "CWE-90"
+  },
+  "BenchmarkTest01169": {
+    "category": "ldapi",
+    "is_vuln": false,
+    "cwe": "CWE-90"
+  },
+  "BenchmarkTest01168": {
+    "category": "ldapi",
+    "is_vuln": false,
+    "cwe": "CWE-90"
+  },
+  "BenchmarkTest00825": {
+    "category": "deserialization",
+    "is_vuln": true,
+    "cwe": "CWE-502"
+  },
+  "BenchmarkTest00510": {
+    "category": "deserialization",
+    "is_vuln": true,
+    "cwe": "CWE-502"
+  },
+  "BenchmarkTest00269": {
+    "category": "deserialization",
+    "is_vuln": true,
+    "cwe": "CWE-502"
+  },
+  "BenchmarkTest00081": {
+    "category": "deserialization",
+    "is_vuln": false,
+    "cwe": "CWE-502"
+  },
+  "BenchmarkTest00659": {
+    "category": "deserialization",
+    "is_vuln": false,
+    "cwe": "CWE-502"
+  },
+  "BenchmarkTest00901": {
+    "category": "deserialization",
+    "is_vuln": false,
+    "cwe": "CWE-502"
+  },
+  "BenchmarkTest00185": {
+    "category": "xss",
+    "is_vuln": false,
+    "cwe": "CWE-79"
+  },
+  "BenchmarkTest01155": {
+    "category": "xss",
+    "is_vuln": false,
+    "cwe": "CWE-79"
+  },
+  "BenchmarkTest00334": {
+    "category": "xss",
+    "is_vuln": false,
+    "cwe": "CWE-79"
+  },
+  "BenchmarkTest00923": {
+    "category": "xss",
+    "is_vuln": true,
+    "cwe": "CWE-79"
+  },
+  "BenchmarkTest00169": {
+    "category": "xss",
+    "is_vuln": true,
+    "cwe": "CWE-79"
+  },
+  "BenchmarkTest00366": {
+    "category": "xss",
+    "is_vuln": true,
+    "cwe": "CWE-79"
+  },
+  "BenchmarkTest00284": {
+    "category": "sqli",
+    "is_vuln": true,
+    "cwe": "CWE-89"
+  },
+  "BenchmarkTest00454": {
+    "category": "sqli",
+    "is_vuln": true,
+    "cwe": "CWE-89"
+  },
+  "BenchmarkTest00455": {
+    "category": "sqli",
+    "is_vuln": true,
+    "cwe": "CWE-89"
+  },
+  "BenchmarkTest00268": {
+    "category": "cmdi",
+    "is_vuln": true,
+    "cwe": "CWE-78"
+  },
+  "BenchmarkTest00167": {
+    "category": "cmdi",
+    "is_vuln": true,
+    "cwe": "CWE-78"
+  },
+  "BenchmarkTest01191": {
+    "category": "cmdi",
+    "is_vuln": true,
+    "cwe": "CWE-78"
+  },
+  "BenchmarkTest00930": {
+    "category": "xxe",
+    "is_vuln": true,
+    "cwe": "CWE-611"
+  },
+  "BenchmarkTest00294": {
+    "category": "xxe",
+    "is_vuln": true,
+    "cwe": "CWE-611"
+  },
+  "BenchmarkTest01212": {
+    "category": "xxe",
+    "is_vuln": true,
+    "cwe": "CWE-611"
+  },
+  "BenchmarkTest00731": {
+    "category": "ldapi",
+    "is_vuln": true,
+    "cwe": "CWE-90"
+  },
+  "BenchmarkTest00824": {
+    "category": "ldapi",
+    "is_vuln": true,
+    "cwe": "CWE-90"
+  },
+  "BenchmarkTest00823": {
+    "category": "ldapi",
+    "is_vuln": true,
+    "cwe": "CWE-90"
+  },
+  "BenchmarkTest00812": {
+    "category": "securecookie",
+    "is_vuln": false,
+    "cwe": "CWE-614"
+  },
+  "BenchmarkTest00415": {
+    "category": "securecookie",
+    "is_vuln": false,
+    "cwe": "CWE-614"
+  },
+  "BenchmarkTest00811": {
+    "category": "securecookie",
+    "is_vuln": false,
+    "cwe": "CWE-614"
+  },
+  "BenchmarkTest01098": {
+    "category": "cmdi",
+    "is_vuln": false,
+    "cwe": "CWE-78"
+  },
+  "BenchmarkTest00512": {
+    "category": "cmdi",
+    "is_vuln": false,
+    "cwe": "CWE-78"
+  },
+  "BenchmarkTest01097": {
+    "category": "cmdi",
+    "is_vuln": false,
+    "cwe": "CWE-78"
+  }
+}

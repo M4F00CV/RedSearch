@@ -1,0 +1,27 @@
+rules:
+  - id: bench-python-xss-response-concat-taint
+    mode: taint
+    languages: [python]
+    severity: ERROR
+    message: XSS via user-controlled input appended to HTTP response
+    metadata:
+      cwe: "CWE-79: Improper Neutralization of Input During Web Page Generation"
+    pattern-sources:
+      - pattern: flask.request.form.get(...)
+      - pattern: flask.request.form.getlist(...)
+      - pattern: flask.request.args.get(...)
+      - pattern: flask.request.args.getlist(...)
+      - pattern: flask.request.cookies.get(...)
+      - pattern: request.form.get(...)
+      - pattern: request.form.getlist(...)
+      - pattern: request.args.get(...)
+      - pattern: request.args.getlist(...)
+      - pattern: request.cookies.get(...)
+    pattern-sinks:
+      - pattern: $RESPONSE += ...
+      - pattern: $RESPONSE = $RESPONSE + ...
+    pattern-sanitizers:
+      - pattern: escape_for_html(...)
+      - pattern: helpers.utils.escape_for_html(...)
+      - pattern: markupsafe.escape(...)
+      - pattern: flask.escape(...)

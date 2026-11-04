@@ -1,0 +1,156 @@
+{
+  "config": "p/python benchmarks/rules",
+  "total_cases": 1230,
+  "overall": {
+    "tp": 90,
+    "fp": 65,
+    "tn": 713,
+    "fn": 362,
+    "tpr": 0.1991,
+    "fpr": 0.0835,
+    "precision": 0.5806,
+    "score": 0.1156
+  },
+  "per_cwe": {
+    "CWE-22": {
+      "tp": 2,
+      "fp": 2,
+      "tn": 101,
+      "fn": 63,
+      "tpr": 0.0308,
+      "fpr": 0.0194,
+      "precision": 0.5,
+      "score": 0.0114
+    },
+    "CWE-328": {
+      "tp": 54,
+      "fp": 0,
+      "tn": 80,
+      "fn": 17,
+      "tpr": 0.7606,
+      "fpr": 0.0,
+      "precision": 1.0,
+      "score": 0.7606
+    },
+    "CWE-330": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 227,
+      "fn": 99,
+      "tpr": 0.0,
+      "fpr": 0.0,
+      "precision": 0.0,
+      "score": 0.0
+    },
+    "CWE-501": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 19,
+      "fn": 18,
+      "tpr": 0.0,
+      "fpr": 0.0,
+      "precision": 0.0,
+      "score": 0.0
+    },
+    "CWE-502": {
+      "tp": 9,
+      "fp": 6,
+      "tn": 30,
+      "fn": 9,
+      "tpr": 0.5,
+      "fpr": 0.1667,
+      "precision": 0.6,
+      "score": 0.3333
+    },
+    "CWE-601": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 21,
+      "fn": 13,
+      "tpr": 0.0,
+      "fpr": 0.0,
+      "precision": 0.0,
+      "score": 0.0
+    },
+    "CWE-611": {
+      "tp": 4,
+      "fp": 4,
+      "tn": 16,
+      "fn": 4,
+      "tpr": 0.5,
+      "fpr": 0.2,
+      "precision": 0.5,
+      "score": 0.3
+    },
+    "CWE-614": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 15,
+      "fn": 24,
+      "tpr": 0.0,
+      "fpr": 0.0,
+      "precision": 0.0,
+      "score": 0.0
+    },
+    "CWE-643": {
+      "tp": 13,
+      "fp": 46,
+      "tn": 89,
+      "fn": 38,
+      "tpr": 0.2549,
+      "fpr": 0.3407,
+      "precision": 0.2203,
+      "score": -0.0858
+    },
+    "CWE-78": {
+      "tp": 7,
+      "fp": 7,
+      "tn": 0,
+      "fn": 6,
+      "tpr": 0.5385,
+      "fpr": 1.0,
+      "precision": 0.5,
+      "score": -0.4615
+    },
+    "CWE-79": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 58,
+      "fn": 31,
+      "tpr": 0.0,
+      "fpr": 0.0,
+      "precision": 0.0,
+      "score": 0.0
+    },
+    "CWE-89": {
+      "tp": 1,
+      "fp": 0,
+      "tn": 11,
+      "fn": 4,
+      "tpr": 0.2,
+      "fpr": 0.0,
+      "precision": 1.0,
+      "score": 0.2
+    },
+    "CWE-90": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 13,
+      "fn": 16,
+      "tpr": 0.0,
+      "fpr": 0.0,
+      "precision": 0.0,
+      "score": 0.0
+    },
+    "CWE-94": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 33,
+      "fn": 20,
+      "tpr": 0.0,
+      "fpr": 0.0,
+      "precision": 0.0,
+      "score": 0.0
+    }
+  }
+}
